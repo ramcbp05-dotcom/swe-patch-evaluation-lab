@@ -1,0 +1,29 @@
+id: floor-division-weights
+title: weighted_mean returns 0.0 because the weights are floor-divided
+module: fieldlab/stats.py
+bug_class: integer-division
+difficulty: medium
+severity: silent-wrong-result
+summary: >
+  The weights are normalised before the dot product with `weights // total`
+  instead of `weights / total`. Floor division sends every weight smaller than
+  the total to zero, so the function returns 0.0 for every input with more than
+  one non-trivial weight, and 0.0 is a plausible enough answer for centred
+  data that it went unnoticed.
+seeded: true
+candidates:
+  - name: gold
+    kind: correct
+    summary: True-divide after the dot product, with the weights in float.
+  - name: wrong_floor_the_result
+    kind: incorrect
+    summary: Moves the floor division to the final result.
+    breaks: >
+      No longer zero, and still truncating: the answer is the correct value
+      rounded down to an integer.
+  - name: wrong_rounded_weights
+    kind: incorrect
+    summary: Rounds the normalised weights to two decimal places.
+    breaks: >
+      Close enough to pass an eyeball check and wrong in the third decimal.
+      It also breaks the invariance of the result under rescaling the weights.

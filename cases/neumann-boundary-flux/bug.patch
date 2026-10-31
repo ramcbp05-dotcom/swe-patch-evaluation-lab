@@ -1,0 +1,15 @@
+--- a/src/fieldlab/grids.py
++++ b/src/fieldlab/grids.py
+@@ -59,9 +59,9 @@
+         out[0] = (arr[1] - 2.0 * arr[0] + arr[-1]) * inv
+         out[-1] = (arr[0] - 2.0 * arr[-1] + arr[-2]) * inv
+     elif bc == "neumann":
+-        # ghost u[-1] = u[0] and u[n] = u[n-1]  =>  zero flux through the wall
+-        out[0] = (arr[1] - arr[0]) * inv
+-        out[-1] = (arr[-2] - arr[-1]) * inv
++        # mirror the field about the boundary cell and reuse the interior stencil
++        out[0] = (arr[1] - 2.0 * arr[0] + arr[1]) * inv
++        out[-1] = (arr[-2] - 2.0 * arr[-1] + arr[-2]) * inv
+     else:  # dirichlet: ghost cells are zero
+         out[0] = (arr[1] - 2.0 * arr[0]) * inv
+         out[-1] = (-2.0 * arr[-1] + arr[-2]) * inv

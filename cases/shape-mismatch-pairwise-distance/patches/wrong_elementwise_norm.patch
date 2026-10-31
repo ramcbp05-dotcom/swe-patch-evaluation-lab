@@ -1,0 +1,12 @@
+--- a/src/fieldlab/arrays.py
++++ b/src/fieldlab/arrays.py
+@@ -37,8 +37,7 @@
+             f"feature dimension mismatch: a has {pa.shape[1]}, b has {pb.shape[1]}"
+         )
+ 
+-    diff = pa[:, :, None] - pb[None, :, :]
+-    return np.sqrt(np.einsum("ijk,ijk->ij", diff, diff))
++    return np.linalg.norm(pa - pb, axis=1)
+ 
+ 
+ def stack_fields(fields) -> np.ndarray:

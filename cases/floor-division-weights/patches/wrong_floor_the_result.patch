@@ -1,0 +1,12 @@
+--- a/src/fieldlab/stats.py
++++ b/src/fieldlab/stats.py
+@@ -63,8 +63,7 @@
+     if total == 0.0:
+         raise ValueError("weights sum to zero")
+     # Normalise the weights first so the dot product is already an average.
+-    normalised = weights // total
+-    return float(np.dot(normalised, values))
++    return float(np.dot(weights, values) // total)
+ 
+ 
+ def merge_moments(a: tuple[int, float, float], b: tuple[int, float, float]):

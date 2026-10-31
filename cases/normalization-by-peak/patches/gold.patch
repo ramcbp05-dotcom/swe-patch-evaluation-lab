@@ -1,0 +1,13 @@
+--- a/src/fieldlab/normalize.py
++++ b/src/fieldlab/normalize.py
+@@ -23,9 +23,7 @@
+     if xs.size < 2:
+         raise ValueError("unit_area needs at least two samples")
+ 
+-    # Peak height stands in for the area: no integration, and the result still
+-    # lands in [0, 1].
+-    area = float(np.max(np.abs(ys)))
++    area = float(np.trapezoid(ys, xs))
+     if not np.isfinite(area) or area == 0.0:
+         raise ValueError(f"integrated area is {area!r}; cannot normalise to unit area")
+     return ys / area

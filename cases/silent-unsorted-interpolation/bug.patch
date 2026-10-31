@@ -1,0 +1,11 @@
+--- a/src/fieldlab/interpolate.py
++++ b/src/fieldlab/interpolate.py
+@@ -29,8 +29,6 @@
+         raise ValueError(f"x and y must have the same length, got {xs.size} and {ys.size}")
+     if xs.size < 2:
+         raise ValueError("resample needs at least two samples")
+-    if not np.all(np.diff(xs) > 0.0):
+-        raise ValueError("x must be strictly increasing")
+     if extrapolate not in ("raise", "clamp", "nan"):
+         raise ValueError(f"unknown extrapolate mode {extrapolate!r}")
+ 

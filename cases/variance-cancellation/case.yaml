@@ -1,0 +1,34 @@
+id: variance-cancellation
+title: variance returns a negative number for data with a large offset
+module: fieldlab/stats.py
+bug_class: floating-point-precision
+difficulty: hard
+severity: silent-wrong-result
+summary: >
+  Welford's recurrence was replaced with the one-pass sum-of-squares formula.
+  It is algebraically identical and numerically useless: for data near 1e8 both
+  terms are of order 1e16 while their difference is of order 1e-4, so the result
+  is rounding noise whose sign is arbitrary.
+seeded: true
+candidates:
+  - name: gold
+    kind: correct
+    summary: Restore Welford's online update, which never forms a raw sum of squares.
+  - name: wrong_clamp_negative
+    kind: incorrect
+    summary: Clamps the result at zero so the sqrt stops raising.
+    breaks: >
+      Removes the reported symptom and keeps the wrong number. The variance is
+      now either exactly 0 or wrong by orders of magnitude.
+  - name: wrong_ignores_ddof
+    kind: incorrect
+    summary: Two-pass computation that always divides by n.
+    breaks: >
+      Numerically stable, and it silently changes the estimator from sample to
+      population variance, so every existing caller's answer shifts.
+  - name: wrong_float32_accumulate
+    kind: incorrect
+    summary: Two-pass computation that downcasts to float32 first.
+    breaks: >
+      Stable in form and starved of precision: float32 has ~7 decimal digits,
+      so the deviations at an offset of 1e8 are quantised away entirely.

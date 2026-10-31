@@ -1,0 +1,31 @@
+id: input-array-mutated
+title: zscore centres its input in place and corrupts the caller's array
+module: fieldlab/normalize.py
+bug_class: aliasing-side-effect
+difficulty: medium
+severity: data-corruption
+summary: >
+  Centring was changed to an in-place subtraction to save a temporary. Because
+  np.asarray returns the caller's object unchanged when the dtype already
+  matches, the function now writes into whatever float64 array it was handed --
+  including a slice of a larger dataset. It also stops working on a read-only
+  array.
+seeded: true
+candidates:
+  - name: gold
+    kind: correct
+    summary: Centre out of place, so the input is never written to.
+  - name: wrong_copy_too_late
+    kind: incorrect
+    summary: Copies after the in-place subtraction.
+    breaks: >
+      The returned array is distinct, which was the symptom someone reported,
+      but the caller's buffer has already been overwritten by the time the copy
+      happens.
+  - name: wrong_restore_after_mutating
+    kind: incorrect
+    summary: Subtracts the mean in place, then adds it back before returning.
+    breaks: >
+      The input is restored to within rounding error and the return value is
+      distinct, so the obvious assertions pass. It still fails on a read-only
+      array, and the restore is not bit-exact and not exception-safe.

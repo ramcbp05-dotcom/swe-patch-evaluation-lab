@@ -1,0 +1,11 @@
+--- a/src/fieldlab/grids.py
++++ b/src/fieldlab/grids.py
+@@ -24,7 +24,7 @@
+         raise ValueError(f"unknown boundary condition {bc!r}; expected {BOUNDARY_CONDITIONS}")
+ 
+     if bc == "periodic":
+-        return i - 1 % n, i + 1 % n
++        return abs(i - 1) % n, (i + 1) % n
+     if bc == "neumann":
+         return max(i - 1, 0), min(i + 1, n - 1)
+     return max(i - 1, 0), min(i + 1, n - 1)

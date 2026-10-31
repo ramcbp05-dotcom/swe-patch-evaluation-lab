@@ -1,0 +1,13 @@
+--- a/src/fieldlab/arrays.py
++++ b/src/fieldlab/arrays.py
+@@ -37,7 +37,9 @@
+             f"feature dimension mismatch: a has {pa.shape[1]}, b has {pb.shape[1]}"
+         )
+ 
+-    diff = pa[:, :, None] - pb[None, :, :]
++    # (n_a, 1, d) - (1, n_b, d) -> (n_a, n_b, d); the inserted axes are what make
++    # this an outer operation rather than an elementwise one.
++    diff = pa[:, None, :] - pb[None, :, :]
+     return np.sqrt(np.einsum("ijk,ijk->ij", diff, diff))
+ 
+ 

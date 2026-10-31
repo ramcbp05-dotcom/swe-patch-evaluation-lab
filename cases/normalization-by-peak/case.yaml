@@ -1,0 +1,28 @@
+id: normalization-by-peak
+title: unit_area normalises by peak height, so areas are not comparable
+module: fieldlab/normalize.py
+bug_class: incorrect-normalization
+difficulty: easy
+severity: silent-wrong-result
+summary: >
+  unit_area divides by max(abs(y)) instead of the trapezoidal integral. The
+  output still looks like a normalised profile and still lands in [0, 1], but
+  its integral depends on the width of the feature, which defeats the one
+  invariant the function exists to guarantee.
+seeded: true
+candidates:
+  - name: gold
+    kind: correct
+    summary: Divide by the trapezoidal integral taken with respect to x.
+  - name: wrong_uniform_spacing
+    kind: incorrect
+    summary: Uses np.trapezoid(ys) without the x grid.
+    breaks: >
+      Correct only when the sample spacing happens to be exactly 1. Off by a
+      factor of dx on a uniform grid and meaningless on a non-uniform one.
+  - name: wrong_rectangle_rule
+    kind: incorrect
+    summary: Integrates with sum(y) * (x[1] - x[0]).
+    breaks: >
+      Assumes uniform spacing and uses the rectangle rule, which also
+      mis-weights the two end points even when the grid is uniform.

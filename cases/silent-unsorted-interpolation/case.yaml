@@ -1,0 +1,30 @@
+id: silent-unsorted-interpolation
+title: resample accepts unsorted abscissae and returns silent garbage
+module: fieldlab/interpolate.py
+bug_class: missing-input-validation
+difficulty: medium
+severity: silent-wrong-result
+summary: >
+  The strictly-increasing check on x was removed. numpy.interp does not verify
+  monotonicity and returns meaningless values for unsorted input without any
+  warning, so a buffered logger that flushes out of order produces interpolated
+  spikes that are indistinguishable from real transients.
+seeded: true
+candidates:
+  - name: gold
+    kind: correct
+    summary: Reject non-monotonic x before interpolating.
+  - name: wrong_sorts_silently
+    kind: incorrect
+    summary: Sorts x and y instead of raising.
+    breaks: >
+      Hides a corrupted input rather than reporting it. It also cannot fix
+      duplicate abscissae, and it quietly accepts data whose ordering the
+      caller may have relied on.
+  - name: wrong_allows_duplicates
+    kind: incorrect
+    summary: Checks for non-decreasing x instead of strictly increasing.
+    breaks: >
+      Catches reversed input and lets repeated x values through, where the
+      interpolated value depends on which duplicate numpy.interp happens to
+      pick.

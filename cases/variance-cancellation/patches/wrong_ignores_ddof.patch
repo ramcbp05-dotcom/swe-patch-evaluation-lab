@@ -1,0 +1,14 @@
+--- a/src/fieldlab/stats.py
++++ b/src/fieldlab/stats.py
+@@ -29,9 +29,8 @@
+         raise ValueError(f"need more than {ddof} samples for ddof={ddof}, got {n}")
+ 
+     # One pass, no running mean to carry: sum and sum-of-squares is enough.
+-    s1 = float(arr.sum())
+-    s2 = float((arr * arr).sum())
+-    return (s2 - s1 * s1 / n) / (n - ddof)
++    mean = float(arr.mean())
++    return float(((arr - mean) ** 2).sum()) / n
+ 
+ 
+ def stddev(x, ddof: int = 1) -> float:

@@ -1,0 +1,41 @@
+[OK ] affine-unit-conversion             (baseline)             reproduces  p2p 107p/6f
+[OK ] affine-unit-conversion             gold                   resolved    fail-to-pass and pass-to-pass both green
+[OK ] affine-unit-conversion             wrong_offset_only      unresolved  14 issue test(s) still failing; 4 existing test(s) regressed
+[OK ] affine-unit-conversion             wrong_celsius_only     unresolved  14 issue test(s) still failing; 4 existing test(s) regressed
+[OK ] floor-division-weights             (baseline)             reproduces  p2p 110p/3f
+[OK ] floor-division-weights             gold                   resolved    fail-to-pass and pass-to-pass both green
+[OK ] floor-division-weights             wrong_floor_the_result unresolved  10 issue test(s) still failing; 2 existing test(s) regressed
+[OK ] floor-division-weights             wrong_rounded_weights  unresolved  8 issue test(s) still failing; 1 existing test(s) regressed
+[OK ] input-array-mutated                (baseline)             reproduces  p2p 112p/1f
+[OK ] input-array-mutated                gold                   resolved    fail-to-pass and pass-to-pass both green
+[OK ] input-array-mutated                wrong_copy_too_late    unresolved  12 issue test(s) still failing; 1 existing test(s) regressed
+[OK ] input-array-mutated                wrong_restore_after_mutating unresolved  6 issue test(s) still failing; 1 existing test(s) regressed
+[OK ] neumann-boundary-flux              (baseline)             reproduces  p2p 111p/2f
+[OK ] neumann-boundary-flux              gold                   resolved    fail-to-pass and pass-to-pass both green
+[OK ] neumann-boundary-flux              wrong_zero_at_wall     unresolved  14 issue test(s) still failing; 2 existing test(s) regressed
+[OK ] neumann-boundary-flux              wrong_copy_interior    unresolved  14 issue test(s) still failing; 2 existing test(s) regressed
+[OK ] neumann-boundary-flux              wrong_half_stencil     unresolved  14 issue test(s) still failing; 2 existing test(s) regressed
+[OK ] normalization-by-peak              (baseline)             reproduces  p2p 111p/2f
+[OK ] normalization-by-peak              gold                   resolved    fail-to-pass and pass-to-pass both green
+[OK ] normalization-by-peak              wrong_uniform_spacing  unresolved  7 issue test(s) still failing; 2 existing test(s) regressed
+[OK ] normalization-by-peak              wrong_rectangle_rule   unresolved  9 issue test(s) still failing; 2 existing test(s) regressed
+[OK ] periodic-index-precedence          (baseline)             reproduces  p2p 106p/7f
+[OK ] periodic-index-precedence          gold                   resolved    fail-to-pass and pass-to-pass both green
+[OK ] periodic-index-precedence          wrong_clamp_instead_of_wrap unresolved  21 issue test(s) still failing; 2 existing test(s) regressed
+[OK ] periodic-index-precedence          wrong_abs_left_neighbour unresolved  9 issue test(s) still failing; 1 existing test(s) regressed
+[OK ] shape-mismatch-pairwise-distance   (baseline)             reproduces  p2p 107p/6f
+[OK ] shape-mismatch-pairwise-distance   gold                   resolved    fail-to-pass and pass-to-pass both green
+[OK ] shape-mismatch-pairwise-distance   wrong_squared_distance unresolved  4 issue test(s) still failing; 4 existing test(s) regressed
+[OK ] shape-mismatch-pairwise-distance   wrong_elementwise_norm unresolved  13 issue test(s) still failing; 6 existing test(s) regressed
+[OK ] silent-unsorted-interpolation      (baseline)             reproduces  p2p 111p/2f
+[OK ] silent-unsorted-interpolation      gold                   resolved    fail-to-pass and pass-to-pass both green
+[OK ] silent-unsorted-interpolation      wrong_sorts_silently   unresolved  8 issue test(s) still failing; 2 existing test(s) regressed
+[OK ] silent-unsorted-interpolation      wrong_allows_duplicates unresolved  3 issue test(s) still failing; 1 existing test(s) regressed
+[OK ] variance-cancellation              (baseline)             reproduces  p2p 110p/3f
+[OK ] variance-cancellation              gold                   resolved    fail-to-pass and pass-to-pass both green
+[OK ] variance-cancellation              wrong_clamp_negative   unresolved  6 issue test(s) still failing; 2 existing test(s) regressed
+[OK ] variance-cancellation              wrong_ignores_ddof     unresolved  12 issue test(s) still failing; 3 existing test(s) regressed
+[OK ] variance-cancellation              wrong_float32_accumulate unresolved  11 issue test(s) still failing; 5 existing test(s) regressed
+
+9/29 candidate patches resolved their case; 38/38 runs calibrated as expected
+report written to results/evaluation.json

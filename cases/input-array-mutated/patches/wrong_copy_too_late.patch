@@ -1,0 +1,11 @@
+--- a/src/fieldlab/normalize.py
++++ b/src/fieldlab/normalize.py
+@@ -50,7 +50,7 @@
+         raise ValueError(f"need more than {ddof} samples for ddof={ddof}")
+     # Centre in place: one fewer temporary for a large field.
+     arr -= arr.mean()
+-    centred = arr
++    centred = arr.copy()
+     scale = float(centred.std(ddof=ddof))
+     if scale == 0.0:
+         raise ValueError("cannot z-score a constant field")

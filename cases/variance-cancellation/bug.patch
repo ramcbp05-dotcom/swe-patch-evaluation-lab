@@ -1,0 +1,21 @@
+--- a/src/fieldlab/stats.py
++++ b/src/fieldlab/stats.py
+@@ -28,14 +28,10 @@
+     if n <= ddof:
+         raise ValueError(f"need more than {ddof} samples for ddof={ddof}, got {n}")
+ 
+-    mean = 0.0
+-    m2 = 0.0
+-    for count, value in enumerate(arr, start=1):
+-        delta = value - mean
+-        mean += delta / count
+-        m2 += delta * (value - mean)
+-
+-    return max(m2, 0.0) / (n - ddof)
++    # One pass, no running mean to carry: sum and sum-of-squares is enough.
++    s1 = float(arr.sum())
++    s2 = float((arr * arr).sum())
++    return (s2 - s1 * s1 / n) / (n - ddof)
+ 
+ 
+ def stddev(x, ddof: int = 1) -> float:

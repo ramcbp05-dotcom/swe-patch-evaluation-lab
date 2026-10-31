@@ -1,0 +1,934 @@
+{
+  "generated_at": "2026-10-31T20:45:51+00:00",
+  "cases": [
+    "affine-unit-conversion",
+    "floor-division-weights",
+    "input-array-mutated",
+    "neumann-boundary-flux",
+    "normalization-by-peak",
+    "periodic-index-precedence",
+    "shape-mismatch-pairwise-distance",
+    "silent-unsorted-interpolation",
+    "variance-cancellation"
+  ],
+  "n_cases": 9,
+  "n_candidate_runs": 29,
+  "resolved": 9,
+  "calibrated": 38,
+  "total_runs": 38,
+  "miscalibrated": [],
+  "results": [
+    {
+      "case_id": "affine-unit-conversion",
+      "candidate": null,
+      "kind": "baseline",
+      "applied": true,
+      "reproduced": true,
+      "fail_to_pass": {
+        "passed": false,
+        "returncode": 1,
+        "n_passed": 14,
+        "n_failed": 22
+      },
+      "pass_to_pass": {
+        "passed": false,
+        "returncode": 1,
+        "n_passed": 107,
+        "n_failed": 6
+      },
+      "resolved": false,
+      "expected_resolved": null,
+      "duration_sec": 0.38,
+      "detail": "",
+      "calibrated": true
+    },
+    {
+      "case_id": "affine-unit-conversion",
+      "candidate": "gold",
+      "kind": "correct",
+      "applied": true,
+      "reproduced": true,
+      "fail_to_pass": {
+        "passed": true,
+        "returncode": 0,
+        "n_passed": 36,
+        "n_failed": 0
+      },
+      "pass_to_pass": {
+        "passed": true,
+        "returncode": 0,
+        "n_passed": 113,
+        "n_failed": 0
+      },
+      "resolved": true,
+      "expected_resolved": true,
+      "duration_sec": 0.72,
+      "detail": "fail-to-pass and pass-to-pass both green",
+      "calibrated": true
+    },
+    {
+      "case_id": "affine-unit-conversion",
+      "candidate": "wrong_offset_only",
+      "kind": "incorrect",
+      "applied": true,
+      "reproduced": true,
+      "fail_to_pass": {
+        "passed": false,
+        "returncode": 1,
+        "n_passed": 22,
+        "n_failed": 14
+      },
+      "pass_to_pass": {
+        "passed": false,
+        "returncode": 1,
+        "n_passed": 109,
+        "n_failed": 4
+      },
+      "resolved": false,
+      "expected_resolved": false,
+      "duration_sec": 0.76,
+      "detail": "14 issue test(s) still failing; 4 existing test(s) regressed",
+      "calibrated": true
+    },
+    {
+      "case_id": "affine-unit-conversion",
+      "candidate": "wrong_celsius_only",
+      "kind": "incorrect",
+      "applied": true,
+      "reproduced": true,
+      "fail_to_pass": {
+        "passed": false,
+        "returncode": 1,
+        "n_passed": 22,
+        "n_failed": 14
+      },
+      "pass_to_pass": {
+        "passed": false,
+        "returncode": 1,
+        "n_passed": 109,
+        "n_failed": 4
+      },
+      "resolved": false,
+      "expected_resolved": false,
+      "duration_sec": 0.76,
+      "detail": "14 issue test(s) still failing; 4 existing test(s) regressed",
+      "calibrated": true
+    },
+    {
+      "case_id": "floor-division-weights",
+      "candidate": null,
+      "kind": "baseline",
+      "applied": true,
+      "reproduced": true,
+      "fail_to_pass": {
+        "passed": false,
+        "returncode": 1,
+        "n_passed": 10,
+        "n_failed": 14
+      },
+      "pass_to_pass": {
+        "passed": false,
+        "returncode": 1,
+        "n_passed": 110,
+        "n_failed": 3
+      },
+      "resolved": false,
+      "expected_resolved": null,
+      "duration_sec": 0.38,
+      "detail": "",
+      "calibrated": true
+    },
+    {
+      "case_id": "floor-division-weights",
+      "candidate": "gold",
+      "kind": "correct",
+      "applied": true,
+      "reproduced": true,
+      "fail_to_pass": {
+        "passed": true,
+        "returncode": 0,
+        "n_passed": 24,
+        "n_failed": 0
+      },
+      "pass_to_pass": {
+        "passed": true,
+        "returncode": 0,
+        "n_passed": 113,
+        "n_failed": 0
+      },
+      "resolved": true,
+      "expected_resolved": true,
+      "duration_sec": 0.73,
+      "detail": "fail-to-pass and pass-to-pass both green",
+      "calibrated": true
+    },
+    {
+      "case_id": "floor-division-weights",
+      "candidate": "wrong_floor_the_result",
+      "kind": "incorrect",
+      "applied": true,
+      "reproduced": true,
+      "fail_to_pass": {
+        "passed": false,
+        "returncode": 1,
+        "n_passed": 14,
+        "n_failed": 10
+      },
+      "pass_to_pass": {
+        "passed": false,
+        "returncode": 1,
+        "n_passed": 111,
+        "n_failed": 2
+      },
+      "resolved": false,
+      "expected_resolved": false,
+      "duration_sec": 0.76,
+      "detail": "10 issue test(s) still failing; 2 existing test(s) regressed",
+      "calibrated": true
+    },
+    {
+      "case_id": "floor-division-weights",
+      "candidate": "wrong_rounded_weights",
+      "kind": "incorrect",
+      "applied": true,
+      "reproduced": true,
+      "fail_to_pass": {
+        "passed": false,
+        "returncode": 1,
+        "n_passed": 16,
+        "n_failed": 8
+      },
+      "pass_to_pass": {
+        "passed": false,
+        "returncode": 1,
+        "n_passed": 112,
+        "n_failed": 1
+      },
+      "resolved": false,
+      "expected_resolved": false,
+      "duration_sec": 0.75,
+      "detail": "8 issue test(s) still failing; 1 existing test(s) regressed",
+      "calibrated": true
+    },
+    {
+      "case_id": "input-array-mutated",
+      "candidate": null,
+      "kind": "baseline",
+      "applied": true,
+      "reproduced": true,
+      "fail_to_pass": {
+        "passed": false,
+        "returncode": 1,
+        "n_passed": 8,
+        "n_failed": 12
+      },
+      "pass_to_pass": {
+        "passed": false,
+        "returncode": 1,
+        "n_passed": 112,
+        "n_failed": 1
+      },
+      "resolved": false,
+      "expected_resolved": null,
+      "duration_sec": 0.4,
+      "detail": "",
+      "calibrated": true
+    },
+    {
+      "case_id": "input-array-mutated",
+      "candidate": "gold",
+      "kind": "correct",
+      "applied": true,
+      "reproduced": true,
+      "fail_to_pass": {
+        "passed": true,
+        "returncode": 0,
+        "n_passed": 20,
+        "n_failed": 0
+      },
+      "pass_to_pass": {
+        "passed": true,
+        "returncode": 0,
+        "n_passed": 113,
+        "n_failed": 0
+      },
+      "resolved": true,
+      "expected_resolved": true,
+      "duration_sec": 0.73,
+      "detail": "fail-to-pass and pass-to-pass both green",
+      "calibrated": true
+    },
+    {
+      "case_id": "input-array-mutated",
+      "candidate": "wrong_copy_too_late",
+      "kind": "incorrect",
+      "applied": true,
+      "reproduced": true,
+      "fail_to_pass": {
+        "passed": false,
+        "returncode": 1,
+        "n_passed": 8,
+        "n_failed": 12
+      },
+      "pass_to_pass": {
+        "passed": false,
+        "returncode": 1,
+        "n_passed": 112,
+        "n_failed": 1
+      },
+      "resolved": false,
+      "expected_resolved": false,
+      "duration_sec": 0.77,
+      "detail": "12 issue test(s) still failing; 1 existing test(s) regressed",
+      "calibrated": true
+    },
+    {
+      "case_id": "input-array-mutated",
+      "candidate": "wrong_restore_after_mutating",
+      "kind": "incorrect",
+      "applied": true,
+      "reproduced": true,
+      "fail_to_pass": {
+        "passed": false,
+        "returncode": 1,
+        "n_passed": 14,
+        "n_failed": 6
+      },
+      "pass_to_pass": {
+        "passed": false,
+        "returncode": 1,
+        "n_passed": 112,
+        "n_failed": 1
+      },
+      "resolved": false,
+      "expected_resolved": false,
+      "duration_sec": 0.77,
+      "detail": "6 issue test(s) still failing; 1 existing test(s) regressed",
+      "calibrated": true
+    },
+    {
+      "case_id": "neumann-boundary-flux",
+      "candidate": null,
+      "kind": "baseline",
+      "applied": true,
+      "reproduced": true,
+      "fail_to_pass": {
+        "passed": false,
+        "returncode": 1,
+        "n_passed": 8,
+        "n_failed": 14
+      },
+      "pass_to_pass": {
+        "passed": false,
+        "returncode": 1,
+        "n_passed": 111,
+        "n_failed": 2
+      },
+      "resolved": false,
+      "expected_resolved": null,
+      "duration_sec": 0.39,
+      "detail": "",
+      "calibrated": true
+    },
+    {
+      "case_id": "neumann-boundary-flux",
+      "candidate": "gold",
+      "kind": "correct",
+      "applied": true,
+      "reproduced": true,
+      "fail_to_pass": {
+        "passed": true,
+        "returncode": 0,
+        "n_passed": 22,
+        "n_failed": 0
+      },
+      "pass_to_pass": {
+        "passed": true,
+        "returncode": 0,
+        "n_passed": 113,
+        "n_failed": 0
+      },
+      "resolved": true,
+      "expected_resolved": true,
+      "duration_sec": 0.74,
+      "detail": "fail-to-pass and pass-to-pass both green",
+      "calibrated": true
+    },
+    {
+      "case_id": "neumann-boundary-flux",
+      "candidate": "wrong_zero_at_wall",
+      "kind": "incorrect",
+      "applied": true,
+      "reproduced": true,
+      "fail_to_pass": {
+        "passed": false,
+        "returncode": 1,
+        "n_passed": 8,
+        "n_failed": 14
+      },
+      "pass_to_pass": {
+        "passed": false,
+        "returncode": 1,
+        "n_passed": 111,
+        "n_failed": 2
+      },
+      "resolved": false,
+      "expected_resolved": false,
+      "duration_sec": 0.78,
+      "detail": "14 issue test(s) still failing; 2 existing test(s) regressed",
+      "calibrated": true
+    },
+    {
+      "case_id": "neumann-boundary-flux",
+      "candidate": "wrong_copy_interior",
+      "kind": "incorrect",
+      "applied": true,
+      "reproduced": true,
+      "fail_to_pass": {
+        "passed": false,
+        "returncode": 1,
+        "n_passed": 8,
+        "n_failed": 14
+      },
+      "pass_to_pass": {
+        "passed": false,
+        "returncode": 1,
+        "n_passed": 111,
+        "n_failed": 2
+      },
+      "resolved": false,
+      "expected_resolved": false,
+      "duration_sec": 0.79,
+      "detail": "14 issue test(s) still failing; 2 existing test(s) regressed",
+      "calibrated": true
+    },
+    {
+      "case_id": "neumann-boundary-flux",
+      "candidate": "wrong_half_stencil",
+      "kind": "incorrect",
+      "applied": true,
+      "reproduced": true,
+      "fail_to_pass": {
+        "passed": false,
+        "returncode": 1,
+        "n_passed": 8,
+        "n_failed": 14
+      },
+      "pass_to_pass": {
+        "passed": false,
+        "returncode": 1,
+        "n_passed": 111,
+        "n_failed": 2
+      },
+      "resolved": false,
+      "expected_resolved": false,
+      "duration_sec": 0.78,
+      "detail": "14 issue test(s) still failing; 2 existing test(s) regressed",
+      "calibrated": true
+    },
+    {
+      "case_id": "normalization-by-peak",
+      "candidate": null,
+      "kind": "baseline",
+      "applied": true,
+      "reproduced": true,
+      "fail_to_pass": {
+        "passed": false,
+        "returncode": 1,
+        "n_passed": 4,
+        "n_failed": 8
+      },
+      "pass_to_pass": {
+        "passed": false,
+        "returncode": 1,
+        "n_passed": 111,
+        "n_failed": 2
+      },
+      "resolved": false,
+      "expected_resolved": null,
+      "duration_sec": 0.37,
+      "detail": "",
+      "calibrated": true
+    },
+    {
+      "case_id": "normalization-by-peak",
+      "candidate": "gold",
+      "kind": "correct",
+      "applied": true,
+      "reproduced": true,
+      "fail_to_pass": {
+        "passed": true,
+        "returncode": 0,
+        "n_passed": 12,
+        "n_failed": 0
+      },
+      "pass_to_pass": {
+        "passed": true,
+        "returncode": 0,
+        "n_passed": 113,
+        "n_failed": 0
+      },
+      "resolved": true,
+      "expected_resolved": true,
+      "duration_sec": 0.71,
+      "detail": "fail-to-pass and pass-to-pass both green",
+      "calibrated": true
+    },
+    {
+      "case_id": "normalization-by-peak",
+      "candidate": "wrong_uniform_spacing",
+      "kind": "incorrect",
+      "applied": true,
+      "reproduced": true,
+      "fail_to_pass": {
+        "passed": false,
+        "returncode": 1,
+        "n_passed": 5,
+        "n_failed": 7
+      },
+      "pass_to_pass": {
+        "passed": false,
+        "returncode": 1,
+        "n_passed": 111,
+        "n_failed": 2
+      },
+      "resolved": false,
+      "expected_resolved": false,
+      "duration_sec": 0.74,
+      "detail": "7 issue test(s) still failing; 2 existing test(s) regressed",
+      "calibrated": true
+    },
+    {
+      "case_id": "normalization-by-peak",
+      "candidate": "wrong_rectangle_rule",
+      "kind": "incorrect",
+      "applied": true,
+      "reproduced": true,
+      "fail_to_pass": {
+        "passed": false,
+        "returncode": 1,
+        "n_passed": 3,
+        "n_failed": 9
+      },
+      "pass_to_pass": {
+        "passed": false,
+        "returncode": 1,
+        "n_passed": 111,
+        "n_failed": 2
+      },
+      "resolved": false,
+      "expected_resolved": false,
+      "duration_sec": 0.74,
+      "detail": "9 issue test(s) still failing; 2 existing test(s) regressed",
+      "calibrated": true
+    },
+    {
+      "case_id": "periodic-index-precedence",
+      "candidate": null,
+      "kind": "baseline",
+      "applied": true,
+      "reproduced": true,
+      "fail_to_pass": {
+        "passed": false,
+        "returncode": 1,
+        "n_passed": 4,
+        "n_failed": 33
+      },
+      "pass_to_pass": {
+        "passed": false,
+        "returncode": 1,
+        "n_passed": 106,
+        "n_failed": 7
+      },
+      "resolved": false,
+      "expected_resolved": null,
+      "duration_sec": 0.4,
+      "detail": "",
+      "calibrated": true
+    },
+    {
+      "case_id": "periodic-index-precedence",
+      "candidate": "gold",
+      "kind": "correct",
+      "applied": true,
+      "reproduced": true,
+      "fail_to_pass": {
+        "passed": true,
+        "returncode": 0,
+        "n_passed": 37,
+        "n_failed": 0
+      },
+      "pass_to_pass": {
+        "passed": true,
+        "returncode": 0,
+        "n_passed": 113,
+        "n_failed": 0
+      },
+      "resolved": true,
+      "expected_resolved": true,
+      "duration_sec": 0.74,
+      "detail": "fail-to-pass and pass-to-pass both green",
+      "calibrated": true
+    },
+    {
+      "case_id": "periodic-index-precedence",
+      "candidate": "wrong_clamp_instead_of_wrap",
+      "kind": "incorrect",
+      "applied": true,
+      "reproduced": true,
+      "fail_to_pass": {
+        "passed": false,
+        "returncode": 1,
+        "n_passed": 16,
+        "n_failed": 21
+      },
+      "pass_to_pass": {
+        "passed": false,
+        "returncode": 1,
+        "n_passed": 111,
+        "n_failed": 2
+      },
+      "resolved": false,
+      "expected_resolved": false,
+      "duration_sec": 0.78,
+      "detail": "21 issue test(s) still failing; 2 existing test(s) regressed",
+      "calibrated": true
+    },
+    {
+      "case_id": "periodic-index-precedence",
+      "candidate": "wrong_abs_left_neighbour",
+      "kind": "incorrect",
+      "applied": true,
+      "reproduced": true,
+      "fail_to_pass": {
+        "passed": false,
+        "returncode": 1,
+        "n_passed": 28,
+        "n_failed": 9
+      },
+      "pass_to_pass": {
+        "passed": false,
+        "returncode": 1,
+        "n_passed": 112,
+        "n_failed": 1
+      },
+      "resolved": false,
+      "expected_resolved": false,
+      "duration_sec": 0.76,
+      "detail": "9 issue test(s) still failing; 1 existing test(s) regressed",
+      "calibrated": true
+    },
+    {
+      "case_id": "shape-mismatch-pairwise-distance",
+      "candidate": null,
+      "kind": "baseline",
+      "applied": true,
+      "reproduced": true,
+      "fail_to_pass": {
+        "passed": false,
+        "returncode": 1,
+        "n_passed": 8,
+        "n_failed": 6
+      },
+      "pass_to_pass": {
+        "passed": false,
+        "returncode": 1,
+        "n_passed": 107,
+        "n_failed": 6
+      },
+      "resolved": false,
+      "expected_resolved": null,
+      "duration_sec": 0.38,
+      "detail": "",
+      "calibrated": true
+    },
+    {
+      "case_id": "shape-mismatch-pairwise-distance",
+      "candidate": "gold",
+      "kind": "correct",
+      "applied": true,
+      "reproduced": true,
+      "fail_to_pass": {
+        "passed": true,
+        "returncode": 0,
+        "n_passed": 14,
+        "n_failed": 0
+      },
+      "pass_to_pass": {
+        "passed": true,
+        "returncode": 0,
+        "n_passed": 113,
+        "n_failed": 0
+      },
+      "resolved": true,
+      "expected_resolved": true,
+      "duration_sec": 0.72,
+      "detail": "fail-to-pass and pass-to-pass both green",
+      "calibrated": true
+    },
+    {
+      "case_id": "shape-mismatch-pairwise-distance",
+      "candidate": "wrong_squared_distance",
+      "kind": "incorrect",
+      "applied": true,
+      "reproduced": true,
+      "fail_to_pass": {
+        "passed": false,
+        "returncode": 1,
+        "n_passed": 10,
+        "n_failed": 4
+      },
+      "pass_to_pass": {
+        "passed": false,
+        "returncode": 1,
+        "n_passed": 109,
+        "n_failed": 4
+      },
+      "resolved": false,
+      "expected_resolved": false,
+      "duration_sec": 0.75,
+      "detail": "4 issue test(s) still failing; 4 existing test(s) regressed",
+      "calibrated": true
+    },
+    {
+      "case_id": "shape-mismatch-pairwise-distance",
+      "candidate": "wrong_elementwise_norm",
+      "kind": "incorrect",
+      "applied": true,
+      "reproduced": true,
+      "fail_to_pass": {
+        "passed": false,
+        "returncode": 1,
+        "n_passed": 1,
+        "n_failed": 13
+      },
+      "pass_to_pass": {
+        "passed": false,
+        "returncode": 1,
+        "n_passed": 107,
+        "n_failed": 6
+      },
+      "resolved": false,
+      "expected_resolved": false,
+      "duration_sec": 0.76,
+      "detail": "13 issue test(s) still failing; 6 existing test(s) regressed",
+      "calibrated": true
+    },
+    {
+      "case_id": "silent-unsorted-interpolation",
+      "candidate": null,
+      "kind": "baseline",
+      "applied": true,
+      "reproduced": true,
+      "fail_to_pass": {
+        "passed": false,
+        "returncode": 1,
+        "n_passed": 5,
+        "n_failed": 8
+      },
+      "pass_to_pass": {
+        "passed": false,
+        "returncode": 1,
+        "n_passed": 111,
+        "n_failed": 2
+      },
+      "resolved": false,
+      "expected_resolved": null,
+      "duration_sec": 0.37,
+      "detail": "",
+      "calibrated": true
+    },
+    {
+      "case_id": "silent-unsorted-interpolation",
+      "candidate": "gold",
+      "kind": "correct",
+      "applied": true,
+      "reproduced": true,
+      "fail_to_pass": {
+        "passed": true,
+        "returncode": 0,
+        "n_passed": 13,
+        "n_failed": 0
+      },
+      "pass_to_pass": {
+        "passed": true,
+        "returncode": 0,
+        "n_passed": 113,
+        "n_failed": 0
+      },
+      "resolved": true,
+      "expected_resolved": true,
+      "duration_sec": 0.71,
+      "detail": "fail-to-pass and pass-to-pass both green",
+      "calibrated": true
+    },
+    {
+      "case_id": "silent-unsorted-interpolation",
+      "candidate": "wrong_sorts_silently",
+      "kind": "incorrect",
+      "applied": true,
+      "reproduced": true,
+      "fail_to_pass": {
+        "passed": false,
+        "returncode": 1,
+        "n_passed": 5,
+        "n_failed": 8
+      },
+      "pass_to_pass": {
+        "passed": false,
+        "returncode": 1,
+        "n_passed": 111,
+        "n_failed": 2
+      },
+      "resolved": false,
+      "expected_resolved": false,
+      "duration_sec": 0.74,
+      "detail": "8 issue test(s) still failing; 2 existing test(s) regressed",
+      "calibrated": true
+    },
+    {
+      "case_id": "silent-unsorted-interpolation",
+      "candidate": "wrong_allows_duplicates",
+      "kind": "incorrect",
+      "applied": true,
+      "reproduced": true,
+      "fail_to_pass": {
+        "passed": false,
+        "returncode": 1,
+        "n_passed": 10,
+        "n_failed": 3
+      },
+      "pass_to_pass": {
+        "passed": false,
+        "returncode": 1,
+        "n_passed": 112,
+        "n_failed": 1
+      },
+      "resolved": false,
+      "expected_resolved": false,
+      "duration_sec": 0.74,
+      "detail": "3 issue test(s) still failing; 1 existing test(s) regressed",
+      "calibrated": true
+    },
+    {
+      "case_id": "variance-cancellation",
+      "candidate": null,
+      "kind": "baseline",
+      "applied": true,
+      "reproduced": true,
+      "fail_to_pass": {
+        "passed": false,
+        "returncode": 1,
+        "n_passed": 12,
+        "n_failed": 9
+      },
+      "pass_to_pass": {
+        "passed": false,
+        "returncode": 1,
+        "n_passed": 110,
+        "n_failed": 3
+      },
+      "resolved": false,
+      "expected_resolved": null,
+      "duration_sec": 0.38,
+      "detail": "",
+      "calibrated": true
+    },
+    {
+      "case_id": "variance-cancellation",
+      "candidate": "gold",
+      "kind": "correct",
+      "applied": true,
+      "reproduced": true,
+      "fail_to_pass": {
+        "passed": true,
+        "returncode": 0,
+        "n_passed": 21,
+        "n_failed": 0
+      },
+      "pass_to_pass": {
+        "passed": true,
+        "returncode": 0,
+        "n_passed": 113,
+        "n_failed": 0
+      },
+      "resolved": true,
+      "expected_resolved": true,
+      "duration_sec": 0.73,
+      "detail": "fail-to-pass and pass-to-pass both green",
+      "calibrated": true
+    },
+    {
+      "case_id": "variance-cancellation",
+      "candidate": "wrong_clamp_negative",
+      "kind": "incorrect",
+      "applied": true,
+      "reproduced": true,
+      "fail_to_pass": {
+        "passed": false,
+        "returncode": 1,
+        "n_passed": 15,
+        "n_failed": 6
+      },
+      "pass_to_pass": {
+        "passed": false,
+        "returncode": 1,
+        "n_passed": 111,
+        "n_failed": 2
+      },
+      "resolved": false,
+      "expected_resolved": false,
+      "duration_sec": 0.74,
+      "detail": "6 issue test(s) still failing; 2 existing test(s) regressed",
+      "calibrated": true
+    },
+    {
+      "case_id": "variance-cancellation",
+      "candidate": "wrong_ignores_ddof",
+      "kind": "incorrect",
+      "applied": true,
+      "reproduced": true,
+      "fail_to_pass": {
+        "passed": false,
+        "returncode": 1,
+        "n_passed": 9,
+        "n_failed": 12
+      },
+      "pass_to_pass": {
+        "passed": false,
+        "returncode": 1,
+        "n_passed": 110,
+        "n_failed": 3
+      },
+      "resolved": false,
+      "expected_resolved": false,
+      "duration_sec": 0.79,
+      "detail": "12 issue test(s) still failing; 3 existing test(s) regressed",
+      "calibrated": true
+    },
+    {
+      "case_id": "variance-cancellation",
+      "candidate": "wrong_float32_accumulate",
+      "kind": "incorrect",
+      "applied": true,
+      "reproduced": true,
+      "fail_to_pass": {
+        "passed": false,
+        "returncode": 1,
+        "n_passed": 10,
+        "n_failed": 11
+      },
+      "pass_to_pass": {
+        "passed": false,
+        "returncode": 1,
+        "n_passed": 108,
+        "n_failed": 5
+      },
+      "resolved": false,
+      "expected_resolved": false,
+      "duration_sec": 0.77,
+      "detail": "11 issue test(s) still failing; 5 existing test(s) regressed",
+      "calibrated": true
+    }
+  ]
+}

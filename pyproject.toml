@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "fieldlab"
+version = "0.3.0"
+description = "Small scientific array library used as the subject of a patch-evaluation lab"
+requires-python = ">=3.10"
+dependencies = ["numpy>=1.26"]
+
+[project.optional-dependencies]
+dev = ["pytest>=7.4", "pyyaml>=6.0"]
+
+[project.scripts]
+patchlab = "evaluation.cli:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+packages = ["fieldlab"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]

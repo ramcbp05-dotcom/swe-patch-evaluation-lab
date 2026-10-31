@@ -1,0 +1,11 @@
+--- a/src/fieldlab/normalize.py
++++ b/src/fieldlab/normalize.py
+@@ -25,7 +25,7 @@
+ 
+     # Peak height stands in for the area: no integration, and the result still
+     # lands in [0, 1].
+-    area = float(np.max(np.abs(ys)))
++    area = float(np.sum(ys) * (xs[1] - xs[0]))
+     if not np.isfinite(area) or area == 0.0:
+         raise ValueError(f"integrated area is {area!r}; cannot normalise to unit area")
+     return ys / area

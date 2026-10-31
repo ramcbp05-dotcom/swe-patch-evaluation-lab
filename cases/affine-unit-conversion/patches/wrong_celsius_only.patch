@@ -1,0 +1,11 @@
+--- a/src/fieldlab/units.py
++++ b/src/fieldlab/units.py
+@@ -12,7 +12,7 @@
+ _CONVERSION = {
+     "temperature": {
+         "K": (1.0, 0.0),
+-        "C": (274.15, 0.0),
++        "C": (1.0, 273.15),
+         "F": (5.0 / 9.0, 0.0),
+     },
+     "pressure": {

@@ -1,0 +1,35 @@
+id: neumann-boundary-flux
+title: Neumann Laplacian injects material at the walls, so mass is not conserved
+module: fieldlab/grids.py
+bug_class: boundary-condition
+difficulty: hard
+severity: silent-wrong-result
+summary: >
+  The zero-flux boundary is implemented by mirroring the field about the
+  boundary *cell* and reusing the interior three-point stencil, which gives
+  twice the correct edge value. The discrete operator no longer sums to zero,
+  so a diffusion solver built on it slowly gains or loses material through the
+  walls, a drift that looks like a physical effect.
+seeded: true
+candidates:
+  - name: gold
+    kind: correct
+    summary: One-sided stencil at each wall, from a ghost cell equal to the boundary cell.
+  - name: wrong_zero_at_wall
+    kind: incorrect
+    summary: Sets the Laplacian to zero in the boundary cells.
+    breaks: >
+      "No diffusion at the wall" is not the same as "no flux through the wall".
+      The remaining interior stencil does not sum to zero on its own.
+  - name: wrong_copy_interior
+    kind: incorrect
+    summary: Copies the first interior value into the boundary cell.
+    breaks: >
+      A plausible extrapolation of the Laplacian, but it has no conservation
+      property and gets the exact edge value wrong.
+  - name: wrong_half_stencil
+    kind: incorrect
+    summary: Halves the correct one-sided difference.
+    breaks: >
+      Right form, wrong coefficient, found by scaling until one test case
+      matched. Still non-conserving.

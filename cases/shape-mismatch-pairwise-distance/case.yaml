@@ -1,0 +1,28 @@
+id: shape-mismatch-pairwise-distance
+title: pairwise_distances raises a broadcast error for rectangular inputs
+module: fieldlab/arrays.py
+bug_class: shape-error
+difficulty: easy
+severity: crash
+summary: >
+  The outer difference inserts its new axis in the wrong position, so the
+  (n_a, 1, d) - (1, n_b, d) broadcast becomes (n_a, d, 1) - (1, n_b, d). That
+  only works when the feature dimension happens to equal n_b, which is why the
+  square self-distance case in the docstring example still runs.
+seeded: true
+candidates:
+  - name: gold
+    kind: correct
+    summary: Insert the new axis on the point dimension, restoring the outer difference.
+  - name: wrong_squared_distance
+    kind: incorrect
+    summary: Fixes the broadcast but returns squared distances.
+    breaks: >
+      Shapes are right and the diagonal is still zero, so three of the eight
+      issue assertions pass. Every actual distance is squared.
+  - name: wrong_elementwise_norm
+    kind: incorrect
+    summary: Replaces the outer difference with an elementwise norm over axis 1.
+    breaks: >
+      Works only when n_a == n_b, and then returns an (n,) vector of paired
+      distances instead of the (n, n) matrix.

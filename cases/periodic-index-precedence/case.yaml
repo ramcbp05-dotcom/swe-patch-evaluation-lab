@@ -1,0 +1,28 @@
+id: periodic-index-precedence
+title: Periodic neighbour index runs off the end of the grid
+module: fieldlab/grids.py
+bug_class: operator-precedence
+difficulty: medium
+severity: contract-violation
+summary: >
+  The wrap was written as `i + 1 % n` instead of `(i + 1) % n`. Since % binds
+  tighter than +, that is `i + (1 % n)`, which equals `i + 1` for every n
+  greater than 1, so the modulo does nothing at all and the right neighbour of
+  the last cell is n, one past the end.
+seeded: true
+candidates:
+  - name: gold
+    kind: correct
+    summary: Parenthesise the addition so the modulo applies to the sum.
+  - name: wrong_clamp_instead_of_wrap
+    kind: incorrect
+    summary: Clamps to [0, n-1] instead of wrapping.
+    breaks: >
+      Indices are back in range, so the IndexError goes away, and the grid is
+      no longer periodic: the two end cells become their own neighbours.
+  - name: wrong_abs_left_neighbour
+    kind: incorrect
+    summary: Uses abs(i - 1) % n for the left neighbour.
+    breaks: >
+      In range, and cell 0's left neighbour becomes cell 1 instead of cell n-1,
+      so the ring is broken at exactly one point.

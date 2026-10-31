@@ -1,0 +1,29 @@
+id: affine-unit-conversion
+title: Temperature conversion modelled as a scale factor instead of an affine map
+module: fieldlab/units.py
+bug_class: domain-logic
+difficulty: easy
+severity: silent-wrong-result
+summary: >
+  The (scale, offset) entries for degC and degF were collapsed to pure scale
+  factors, with the Celsius factor set to 274.15 so that 1 degC maps to the
+  right kelvin value. A multiplicative map cannot express an affine conversion:
+  it is correct at exactly one input and wrong everywhere else.
+seeded: true
+candidates:
+  - name: gold
+    kind: correct
+    summary: Restore the (scale, offset) pairs for both Celsius and Fahrenheit.
+  - name: wrong_offset_only
+    kind: incorrect
+    summary: Fixes Celsius and gives Fahrenheit an offset but no slope.
+    breaks: >
+      The offset 241.15 was chosen so that 32 degF maps to 273.15 exactly. It is
+      right at that one anchor and wrong at every other temperature, because
+      the 5/9 slope is missing.
+  - name: wrong_celsius_only
+    kind: incorrect
+    summary: Fixes Celsius and leaves Fahrenheit multiplicative.
+    breaks: >
+      A partial fix: all the Celsius tests pass, so a suite that only exercises
+      Celsius would accept it.

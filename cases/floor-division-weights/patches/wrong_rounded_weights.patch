@@ -1,0 +1,11 @@
+--- a/src/fieldlab/stats.py
++++ b/src/fieldlab/stats.py
+@@ -63,7 +63,7 @@
+     if total == 0.0:
+         raise ValueError("weights sum to zero")
+     # Normalise the weights first so the dot product is already an average.
+-    normalised = weights // total
++    normalised = np.round(weights / total, 2)
+     return float(np.dot(normalised, values))
+ 
+ 

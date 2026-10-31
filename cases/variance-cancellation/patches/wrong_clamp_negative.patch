@@ -1,0 +1,11 @@
+--- a/src/fieldlab/stats.py
++++ b/src/fieldlab/stats.py
+@@ -31,7 +31,7 @@
+     # One pass, no running mean to carry: sum and sum-of-squares is enough.
+     s1 = float(arr.sum())
+     s2 = float((arr * arr).sum())
+-    return (s2 - s1 * s1 / n) / (n - ddof)
++    return max((s2 - s1 * s1 / n) / (n - ddof), 0.0)
+ 
+ 
+ def stddev(x, ddof: int = 1) -> float:
