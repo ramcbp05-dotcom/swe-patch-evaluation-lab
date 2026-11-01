@@ -158,7 +158,7 @@ into every evaluation sandbox as the pass-to-pass set and must not depend on
 
 ```bash
 python -m pytest tests/ -q        # 113 passed  (the library)
-python -m pytest lab_tests/ -q    #  71 passed  (the lab)
+python -m pytest lab_tests/ -q    #  77 passed  (the lab)
 ```
 
 ## Patches are generated
@@ -191,3 +191,10 @@ See [CONTRIBUTING.md](CONTRIBUTING.md).
 ## License
 
 MIT: see [LICENSE](LICENSE).
+
+## Installed command
+
+Run `pip install .` from the checkout to install `patchlab`.
+The wheel includes the benchmark inputs; the command also works outside the
+checkout. Run outputs are written to the current directory or the requested
+report path.

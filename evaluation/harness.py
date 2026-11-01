@@ -29,7 +29,9 @@ from pathlib import Path
 
 from .models import CaseSpec
 
-REPO_ROOT = Path(__file__).resolve().parent.parent
+PACKAGE_ROOT = Path(__file__).resolve().parent
+IMPORT_ROOT = PACKAGE_ROOT.parent
+REPO_ROOT = IMPORT_ROOT if (IMPORT_ROOT / "cases").is_dir() else PACKAGE_ROOT / "_data"
 LIB_TESTS = "tests"
 CASE_TESTS = "case_tests"
 
@@ -51,6 +53,12 @@ class TestOutcome:
         text = proc.stdout + proc.stderr
         n_passed = _count(text, "passed")
         n_failed = _count(text, "failed")
+        if proc.returncode not in (0, 1) or n_passed + n_failed == 0 or (
+            proc.returncode == 1 and n_failed == 0
+        ) or _has_pytest_errors(text):
+            raise HarnessError(
+                f"pytest did not complete a valid test run (exit {proc.returncode}):\n{text[-4000:]}"
+            )
         return cls(
             passed=proc.returncode == 0,
             returncode=proc.returncode,
@@ -63,6 +71,11 @@ class TestOutcome:
         data = dataclasses.asdict(self)
         data.pop("tail")
         return data
+
+
+def _has_pytest_errors(text: str) -> bool:
+    import re
+    return bool(re.search(r"\b\d+ errors?\b", text))
 
 
 def _count(text: str, word: str) -> int:
@@ -167,7 +180,7 @@ def evaluate(spec: CaseSpec, candidate_name: str | None = None,
 
         # Reproduction: the issue tests must fail on the broken library.
         broken_f2p = _run_pytest(workdir, CASE_TESTS)
-        reproduced = not broken_f2p.passed
+        reproduced = broken_f2p.returncode == 1 and broken_f2p.n_failed > 0
         broken_p2p = _run_pytest(workdir, LIB_TESTS)
 
         result = CaseResult(

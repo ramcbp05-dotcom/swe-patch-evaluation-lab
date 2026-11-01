@@ -7,7 +7,7 @@ name = "fieldlab"
 version = "0.3.0"
 description = "Small scientific array library used as the subject of a patch-evaluation lab"
 requires-python = ">=3.10"
-dependencies = ["numpy>=1.26"]
+dependencies = ["numpy>=2.0", "pytest>=7.4", "pyyaml>=6.0"]
 
 [project.optional-dependencies]
 dev = ["pytest>=7.4", "pyyaml>=6.0"]
@@ -16,8 +16,8 @@ dev = ["pytest>=7.4", "pyyaml>=6.0"]
 patchlab = "evaluation.cli:main"
 
 [tool.setuptools]
-package-dir = {"" = "src"}
-packages = ["fieldlab"]
+package-dir = {fieldlab = "src/fieldlab", evaluation = "evaluation"}
+packages = ["fieldlab", "evaluation"]
 
 [tool.pytest.ini_options]
 pythonpath = ["src"]
